@@ -2,6 +2,7 @@
 var express = require('express'),
     app = express();
 
+var db = require('./models');
 // parse incoming urlencoded form data
 // and populate the req.body object
 var bodyParser = require('body-parser');
@@ -54,7 +55,8 @@ app.get('/api', function apiIndex(req, res) {
     endpoints: [
       {method: "GET", path: "/api", description: "Describes all available endpoints"},
       {method: "GET", path: "/api/profile", description: "Data about me"}, // CHANGE ME
-      {method: "POST", path: "/api/campsites", description: "E.g. Create a new campsite"} // CHANGE ME
+      {method: "POST", path: "/api/campsites", description: "E.g. Create a new campsite"},
+      {method: "GET", path: "/api/movie", description: "Movies that I like"}// CHANGE ME
     ]
   })
 });
@@ -78,6 +80,16 @@ app.get('/api/profile', function getProfile(req, res){
   res.json(profile);
 });
 
+//get all Movies
+app.get('/api/movie', function(req, res){
+  //find all movies in db
+  db.Movie.find({}, function(err,allMovie){
+    if (err){
+        console.log("index error: " + err);
+      }
+    res.json({movie: allMovie});
+  });
+});
 
 /**********
  * SERVER *

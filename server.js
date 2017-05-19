@@ -42,6 +42,7 @@ app.get('/', function homepage(req, res) {
  * JSON API Endpoints
  */
 
+
 app.get('/api', function apiIndex(req, res) {
   // TODO: Document all your api endpoints below as a simple hardcoded JSON object.
   // It would be seriously overkill to save any of this to your database.
@@ -57,6 +58,26 @@ app.get('/api', function apiIndex(req, res) {
     ]
   })
 });
+
+//endpoints for profile
+app.get('/api/profile', function getProfile(req, res){
+  var profile = {
+    name: 'Vivienne White',
+    githubUsername: 'vivwhite',
+    githubLink: 'https://github.com/Vivwhite',
+    githubProfileImage: 'https://github.com/account',
+    personalSiteLink: 'https://missedgy.com',
+    currentCity: 'Austin TX',
+    pets: {
+      name: 'Purrfect',
+      type: 'domestic shorthair',
+      age: 1,
+      indoorcat: true
+    }
+  }
+  res.json(profile);
+});
+
 
 /**********
  * SERVER *

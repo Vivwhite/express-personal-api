@@ -4,14 +4,20 @@
    var db = require('./models');
 
 // var new_campsite = {description: "Sharp rocks. Middle of nowhere."}
-var newMovie = {
+var newMovieList = [{
   title: 'Pulp Fiction',
   genres: ' neo-noir',
   director: 'Quentin Tarantino',
   releaseDate: 10141994
+},
+{
+  title: 'Enter The Void',
+  genres: ' thriller',
+  director: 'Gaspar Noé',
+  releaseDate: 09242010
 }
-
-db.Movie.create(newMovie, function(err, movie){
+]
+db.Movie.create(newMovieList, function(err, movie){
   if (err){
     return console.log("Error:", err);
   }
